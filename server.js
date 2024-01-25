@@ -1,12 +1,17 @@
 const express = require("express")
 const { PORT } = require("./config/config")
+const { connectToDB } = require("./db/mongodb")
 
-const app = express()
+const app = express();
+connectToDB();
+
 
 app.use(express.json())
 
+
 app.get("/", (req, res) => {
     // ...
+    res.send("welcome to kook!")
 })
 
 
