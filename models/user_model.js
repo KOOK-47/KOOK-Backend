@@ -21,7 +21,7 @@ const User_Schema = new Schema({
         type: String,
         required: true
     },
-    Role: {
+    role: {
         type: String,
         enum: ['private_chef', 'individual', 'catering_business'],
         required: true
