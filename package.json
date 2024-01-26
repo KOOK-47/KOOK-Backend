@@ -1,7 +1,6 @@
 {
   "name": "kook-backend",
   "version": "1.0.0",
-  "type": "module",
   "description": "",
   "main": "server.js",
   "scripts": {
