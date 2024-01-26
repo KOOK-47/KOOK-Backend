@@ -1,10 +1,10 @@
-require("dotenv").config()
+import dotenv from 'dotenv';
 
-const PORT = process.env.PORT
-const DB_URL = process.env.MONGO_DB_URL
+// Load environment variables from .env file
+dotenv.config();
 
+// Retrieve environment variables
+const { PORT, MONGO_DB_URL, SECRET } = process.env;
 
-module.exports = {
-    PORT,
-    DB_URL,
-}
+// Export variables
+export { PORT, MONGO_DB_URL, SECRET };

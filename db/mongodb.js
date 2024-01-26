@@ -1,22 +1,19 @@
-const mongoose = require("mongoose")
-const { DB_URL } = require("../config/config")
+import mongoose from 'mongoose';
+import { MONGO_DB_URL } from '../config/config.js';
 
-
+// Connect to the database
 function connectToDB() {
-    mongoose.connect(DB_URL)
+  mongoose.connect(MONGO_DB_URL);
 
-    mongoose.connection.on("connected", () => {
-        console.log("db connected successfully")
-    })
+  mongoose.connection.on('connected', () => {
+    console.log('db connected successfully');
+  });
 
-    mongoose.connection.on("error", (err) => {
-        console.log("error occured while trying to connect to db")
-        console.log(err)
-
-    })
+  mongoose.connection.on('error', (err) => {
+    console.log('error occurred while trying to connect to db');
+    console.log(err);
+  });
 }
 
-
-module.exports = {
-    connectToDB
-}
+// Export the function
+export { connectToDB };
