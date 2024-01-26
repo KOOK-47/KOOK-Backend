@@ -1,68 +1,75 @@
-const userModel = require('../models/user_model')
+import userModel from '../models/user_model.js';
 
-function getAllUsers(req, res) {
-    userModel.find()
-        .then(users => {
-            res.send(users)
-        })
-        .catch(err => {
-            console.log(err)
-            res.send(err)
-        })
+// Get all users
+async function getAllUsers(_req, res) {
+  try {
+    const users = await userModel.find();
+    res.send(users);
+  } catch (err) {
+    console.error(err);
+    res.send(err);
+  }
 }
 
-function getUserByID(req, res) {
-    const id = req.params.id
-    userModel.findById(id)
-        .then(user => {
-            res.status(200).send(user)
-        }).catch(err => {
-            console.log(err)
-            res.status(404).send(err)
-        })
+// Get user by ID
+async function getUserByID(req, res) {
+  const id = req.params.id;
+  try {
+    const user = await userModel.findById(id);
+    res.status(200).send(user);
+  } catch (err) {
+    console.error(err);
+    res.status(404).send(err);
+  }
 }
 
-function createNewUser(req, res) {
-    const user = req.body
-    user.lastUpdateAt = new Date() 
-    userModel.create(user)
-        .then(user => {
-            res.status(201).send(user)
-        }).catch(err => {
-            console.log(err)
-            res.status(500).send(err)
-        })
+// Create a new user
+async function createNewUser(req, res) {
+  const user = req.body;
+  user.lastUpdateAt = new Date();
+
+  try {
+    const createdUser = await userModel.create(user);
+    res.status(201).send(createdUser);
+  } catch (err) {
+    console.error(err);
+    res.status(500).send(err);
+  }
 }
 
-function updateUser(req, res) {
-    const id = req.params.id
-    const user = req.body
-    user.lastUpdateAt = new Date()
-    userModel.findByIdAndUpdate(id, user, { new: true })
-        .then(newUser => {
-            res.status(200).send(newUser)
-        }).catch(err => {
-            console.log(err)
-            res.status(500).send(err)
-        })
+// Update a user
+async function updateUser(req, res) {
+  const id = req.params.id;
+  const user = req.body;
+  user.lastUpdateAt = new Date();
+
+  try {
+    const newUser = await userModel.findByIdAndUpdate(id, user, { new: true });
+    res.status(200).send(newUser);
+  } catch (err) {
+    console.error(err);
+    res.status(500).send(err);
+  }
 }
 
-function deleteUserByID(req, res) {
-    const id = req.params.id
-    userModel.findByIdAndRemove(id)
-        .then(user => {
-            res.status(200).send(user)
-        }).catch(err => {
-            console.log(err)
-            res.status(500).send(err)
-        })
+// Delete user by ID
+async function deleteUserByID(req, res) {
+  const id = req.params.id;
+
+  try {
+    const deletedUser = await userModel.findByIdAndDelete(id);
+    res.status(200).send(deletedUser);
+  } catch (err) {
+    console.error(err);
+    res.status(500).send(err);
+  }
 }
 
-
-module.exports = {
-    getAllUsers,
-    getUserByID,
-    createNewUser,
-    updateUser,
-    deleteUserByID
-}
+// Export the functions
+export {
+  getAllUsers,
+  getUserByID,
+  createNewUser,
+  updateUser,
+  deleteUserByID
+};

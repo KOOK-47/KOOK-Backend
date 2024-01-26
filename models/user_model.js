@@ -1,40 +1,40 @@
-const moogoose = require('mongoose');
+import mongoose from 'mongoose';
 
-const Schema = moogoose.Schema;
+// Create a schema using mongoose.Schema
+const { Schema } = mongoose;
 
-
-
-const User_Schema = new Schema({
-    firstname: {
-        type: String,
-        required: true
-    },
-    lastname: {
-        type: String,
-        required: true
-    },
-    email: {
-        type: String,
-        required: true
-    },
-    password: {
-        type: String,
-        required: true
-    },
-    role: {
-        type: String,
-        enum: ['private_chef', 'individual', 'catering_business'],
-        required: true
-    },
-    createAt : {
-        type: Date,
-        default: Date.now
-    },
-    lastUpdateAt : {
-        type: Date,
-        default: Date.now
-    },
+// Define the User schema
+const UserSchema = new Schema({
+  firstname: {
+    type: String,
+    required: true
+  },
+  lastname: {
+    type: String,
+    required: true
+  },
+  email: {
+    type: String,
+    required: true
+  },
+  password: {
+    type: String,
+    required: true
+  },
+  role: {
+    type: String,
+    enum: ['private_chef', 'individual', 'catering_business'],
+    required: true
+  },
+  createAt: {
+    type: Date,
+    default: Date.now
+  },
+  lastUpdateAt: {
+    type: Date,
+    default: Date.now
+  },
 });
 
-
-module.exports = moogoose.model('users', User_Schema); 
+// Export the mongoose model
+export default mongoose.model('users', UserSchema);
