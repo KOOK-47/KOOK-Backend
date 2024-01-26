@@ -22,7 +22,7 @@ function getUserByID(req, res) {
         })
 }
 
-function createUser(req, res) {
+function createNewUser(req, res) {
     const user = req.body
     book.lastUpdateAt = new Date() 
     userModel.create(user)
@@ -56,4 +56,13 @@ function deleteUserByID(req, res) {
             console.log(err)
             res.status(500).send(err)
         })
+}
+
+
+module.exports = {
+    getAllUsers,
+    getUserByID,
+    createNewUser,
+    updateUser,
+    deleteUserByID
 }
