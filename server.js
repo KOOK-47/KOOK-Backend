@@ -3,6 +3,7 @@ import bodyParser from 'body-parser';
 import { PORT } from './config/config.js';
 import { connectToDB } from './db/mongodb.js';
 import usersRouter from './routes/users.routes.js';
+import authRouter from './routes/auth.routes.js';
 import lookupRouter from './routes/lookup.routes.js';
 
 // Create an express app
@@ -15,6 +16,7 @@ app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
 
 app.use('/users', usersRouter);
+app.use('/auth', authRouter);
 app.use('/lookup', lookupRouter);
 
 // Define a simple welcome route
