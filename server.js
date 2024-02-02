@@ -1,10 +1,12 @@
 import express from 'express';
 import bodyParser from 'body-parser';
+import cors from 'cors';
 import { PORT } from './config/config.js';
 import { connectToDB } from './db/mongodb.js';
 import usersRouter from './routes/users.routes.js';
 import authRouter from './routes/auth.routes.js';
 import lookupRouter from './routes/lookup.routes.js';
+
 
 // Create an express app
 const app = express();
@@ -14,6 +16,7 @@ connectToDB();
 
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
+app.use(cors());
 
 app.use('/users', usersRouter);
 app.use('/auth', authRouter);
