@@ -24,18 +24,18 @@ async function getUserByID(req, res) {
 }
 
 // Create a new user
-async function createNewUser(req, res) {
-  const user = req.body;
-  user.lastUpdateAt = new Date();
+// async function createNewUser(req, res) {
+//   const user = req.body;
+//   user.lastUpdateAt = new Date();
 
-  try {
-    const createdUser = await userModel.create(user);
-    res.status(201).send(createdUser);
-  } catch (err) {
-    console.error(err);
-    res.status(500).send(err);
-  }
-}
+//   try {
+//     const createdUser = await userModel.create(user);
+//     res.status(201).send(createdUser);
+//   } catch (err) {
+//     console.error(err);
+//     res.status(500).send(err);
+//   }
+// }
 
 // Update a user
 async function updateUser(req, res) {
@@ -69,7 +69,6 @@ async function deleteUserByID(req, res) {
 export {
   getAllUsers,
   getUserByID,
-  createNewUser,
   updateUser,
   deleteUserByID
 };
